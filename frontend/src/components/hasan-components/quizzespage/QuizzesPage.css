@@ -1,0 +1,55 @@
+.quizzes-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+}
+
+/* Categories */
+.categories-section {
+  margin: 32px 0 16px;
+}
+
+/* العنوان الخاص بالفئات مع التحكم بلونه */
+.categories-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+  color: #247563; /* عدّل هذا إلى أي لون تريده */
+}
+
+.categories-list {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+/* Results */
+.results-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .categories-title {
+    font-size: 18px;
+  }
+  .results-section {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-section {
+    margin: 24px 0 12px;
+  }
+  .categories-title {
+    font-size: 16px;
+  }
+  .results-section {
+    gap: 6px;
+  }
+}
+

@@ -1,0 +1,62 @@
+/* src/components/hasan-components/quizzespage/CategoryCard.css */
+
+.category-card {
+  width: 100%;                 /* يملأ خلية الـ Grid بالكامل */
+  aspect-ratio: 120 / 100;     /* يحافظ على نسبة العرض/الارتفاع */
+  background: #a0eaca;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+}
+
+.category-card .thumb {
+  width: 60%;                  /* نسبة مئوية من عرض البطاقة */
+  aspect-ratio: 80 / 50;
+  background: #166757;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.category-card p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Responsive @tablet */
+@media (max-width: 768px) {
+  .category-card {
+    aspect-ratio: 100 / 80;      /* نجعل البطاقة أقل ارتفاعًا */
+  }
+  .category-card .thumb {
+    width: 50%;
+    aspect-ratio: 70 / 45;
+    margin-bottom: 6px;
+  }
+  .category-card p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive @mobile */
+@media (max-width: 480px) {
+  .category-card {
+    aspect-ratio: 90 / 70;
+  }
+  .category-card .thumb {
+    width: 40%;
+    aspect-ratio: 60 / 35;
+    margin-bottom: 4px;
+  }
+  .category-card p {
+    font-size: 0.8rem;
+  }
+}

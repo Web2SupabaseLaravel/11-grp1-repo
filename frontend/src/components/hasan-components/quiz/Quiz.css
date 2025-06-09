@@ -1,0 +1,170 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8fffb;
+  margin: 0;
+  padding: 0;
+}
+
+.quiz-wrapper {
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.back-arrow {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #29a994;
+}
+
+.quiz-header {
+  text-align: center;
+  color: #36c0a6;
+}
+
+.quiz-header h2 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.quiz-header p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #6ccbb8;
+}
+
+.quiz-card {
+  background: #95e4cf;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-top {
+  display: flex;
+  justify-content: space-between;
+  color: #4561D0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.quit-btn {
+  background: none;
+  border: none;
+  color: #4561D0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.quiz-question {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.option {
+  padding: 1rem 1.5rem;
+  background: rgb(255, 255, 255);
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-align: left;
+  color: #41AC75;
+}
+
+.option:hover {
+  background: #ffffff;
+}
+
+.option.selected {
+  background-color: #3bd2ae;
+  color: white;
+}
+
+.result-link {
+  color: #2E7C59;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.quiz-nav {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.nav-btn {
+  background-color: #2aa679;
+  color: white;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  min-width: 150px;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: #248f69;
+}
+
+/* 📱 Responsive for Mobile */
+@media (max-width: 600px) {
+  .quiz-wrapper {
+    padding: 1rem;
+  }
+
+  .quiz-card {
+    padding: 1.2rem;
+  }
+
+  .quiz-question {
+    font-size: 1.2rem;
+  }
+
+  .option {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+  }
+
+  .quiz-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .quiz-header p,
+  .result-link,
+  .quit-btn,
+  .quiz-top {
+    font-size: 1rem;
+  }
+
+  .nav-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    min-width: 120px;
+  }
+}
