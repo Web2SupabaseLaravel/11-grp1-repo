@@ -12,3 +12,4 @@ Route::resource('datacourses', CoursesController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+Route::post('/courses', [CoursesController::class, 'store']);
