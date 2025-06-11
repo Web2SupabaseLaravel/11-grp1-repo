@@ -191,7 +191,7 @@ nav ul li ul li a:hover {
         <ul class="absolute hidden group-hover:block bg-white text-black rounded shadow-md mt-2 w-40">
           <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Create </a></li>
           <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Upsdate </a></li>
-          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Delete </a></li>
+          <li><a href="{{ route('delete.blade.php') }}" class="block px-4 py-2 hover:bg-gray-100">Delete </a></li>
         </ul>
       </li>
       <li><a href="#" class="hover:text-gray-200">Lessons</a></li>
