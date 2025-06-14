@@ -1,74 +1,42 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\UsersApiController;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Models\User;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\SocialAuthController;
 
-/**
- * Auth Routes (Register, Login, Logout, Me)
- */
-Route::post('/login', [AuthController::class, 'login'])->name('api.login');
-Route::post('/register', [AuthController::class, 'register'])->name('api.register');
+Route::view('/dashboard', 'dashboard')->middleware(['auth'])->name('dashboard');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/me', [AuthController::class, 'me']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-});
+Route::view('/profile', 'profile')->middleware(['auth'])->name('profile');
 
-/**
- * Optional: Show registration form (for web, not API)
- */
+Route::resource('datausers', UsersController::class);
+
+// Authentication Routes
+
+Route::get('/login', function () {
+
+return view('auth.login');
+
+})->name('login');
+
+Route::post('/login', [LoginController::class, 'login']);
+
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
-/**
- * Example custom registration (directly in route) – not needed if using controller
- */
-Route::post('/register-direct', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8|confirmed',
-    ]);
+Route::post('/register', [RegisterController::class, 'register']);
 
-    if ($validator->fails()) {
-        return response()->json([
-            'status' => 'error',
-            'errors' => $validator->errors()
-        ], 422);
-    }
+// Forgot Password Routes
 
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Social Auth
 
-    return response()->json([
-        'status' => 'success',
-        'message' => 'User registered successfully!',
-        'user' => $user
-    ]);
-});
+Route::get('/auth/{provider}', [SocialAuthController::class, 'redirect'])->name('social.redirect');
 
-/**
- * Users API Resource (CRUD)
- */
-Route::apiResource('users', UsersApiController::class);
+Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'callback'])->name('social.callback');
 
-/**
- * Sample Protected API Route
- */
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// routes/api.php
 
-/**
- * Example: Products Route (if you have a ProductController)
- */
-Route::middleware('api')->get('/products', [ProductController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login'])->name('api.login');
