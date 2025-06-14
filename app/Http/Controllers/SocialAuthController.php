@@ -17,23 +17,34 @@ class SocialAuthController extends Controller
     public function callback($provider)
     {
         try {
-            $socialUser = Socialite::driver($provider)->stateless()->user();
+        // البحث عن مستخدم مسجل مسبقاً بواسطة الـ provider_id والـ provider
+        $user = User::where('provider_id', $socialUser->getId())
+                    ->where('provider', $provider)
+                    ->first();
 
-            // ابحث عن المستخدم أو أنشئه
-            $user = User::updateOrCreate([
-                'email' => $socialUser->getEmail(),
-            ], [
-                'name' => $socialUser->getName() ?? $socialUser->getNickname(),
-                'provider' => $provider,
-                'provider_id' => $socialUser->getId(),
-                'password' => bcrypt(Str::random(24)), // كلمة مرور عشوائية
+        if (!$user) {
+            // إذا لم يكن موجوداً، نحاول إيجاده عبر البريد الإلكتروني
+            $user = User::where('email', $socialUser->getEmail())->first();
+        }
+
+        if (!$user) {
+            // إنشاء مستخدم جديد
+            $user = User::create([
+                'name'       => $socialUser->getName() ?? $socialUser->getNickname(),
+                'email'      => $socialUser->getEmail(),
+                'provider'   => $provider,
+                'provider_id'=> $socialUser->getId(),
             ]);
+        }
 
+        // ... (تابع تسجيل الدخول أو إصدار توكن حسب الحاجة)
+   
             Auth::login($user);
 
-            return redirect('/home'); // غيرها حسب الصفحة المطلوبة
+            return redirect()->intended('/dashboard'); // غيرها حسب الصفحة المطلوبة
+
         } catch (\Exception $e) {
-            return redirect('/login')->with('error', 'Something went wrong!');
+            return redirect('/login')->with('error', 'Something went wrong!' . ucfirst($provider));
         }
     }
 }
