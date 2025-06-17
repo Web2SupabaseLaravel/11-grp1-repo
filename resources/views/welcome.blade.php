@@ -207,7 +207,7 @@
                         <ul>
                             <li><a href="{{ route('courses.createe') }}">Create Courses</a></li>
                              <li><a href="/courses">List</a></li>
-                            <li><a href="#">Edit Courses</a></li>
+                              <li><a href="#">Edit</a></li>
                             <li><a href="#">Delete Courses</a></li>
                         </ul>
                     </li>

@@ -50,7 +50,7 @@ class CoursesController extends Controller
     public function edit($id)
     {
         $course = Course::findOrFail($id); // تحميل كورس واحد
-    return view('courses.form_courses', compact('course')); // تمرير $courses
+     return view('courses.edit', compact('course'));// تمرير $courses
     }
 
     public function update(Request $request, $id)
