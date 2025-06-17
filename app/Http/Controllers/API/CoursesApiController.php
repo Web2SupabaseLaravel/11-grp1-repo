@@ -61,4 +61,10 @@ class CoursesApiController extends Controller
             'message' => 'Course deleted successfully',
         ], 204);
     }
+    public function list()
+{
+    $courses = \App\Models\Course::all();
+    return view('courses.list', compact('courses'));
+}
+
 }

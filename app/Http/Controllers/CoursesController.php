@@ -21,6 +21,7 @@ class CoursesController extends Controller
     $submitButton = 'Submit';
 
     return view('courses.form_courses', compact('courses', 'route', 'method', 'submitButton'));
+     return view('courses.create');
     }
 
     public function store(Request $request)
@@ -48,8 +49,8 @@ class CoursesController extends Controller
 
     public function edit($id)
     {
-        $courses = Course::findOrFail($id); // تحميل كورس واحد
-    return view('courses.form_courses', compact('courses')); // تمرير $courses
+        $course = Course::findOrFail($id); // تحميل كورس واحد
+     return view('courses.edit', compact('course'));// تمرير $courses
     }
 
     public function update(Request $request, $id)
@@ -75,6 +76,7 @@ class CoursesController extends Controller
         $course = Course::findOrFail($id);
         $course->delete();
 
-        return redirect()->route('datacourses.index')->with('success', 'Course deleted successfully');
+          return view('courses.delete', compact('course')); 
     }
+
 }
