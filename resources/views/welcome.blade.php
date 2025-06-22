@@ -194,9 +194,31 @@
                 top: 5%;
             }
         }
+        .login-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #40916c;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(64, 145, 108, 0.3);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    z-index: 1000;
+}
+
+.login-button:hover {
+    background-color: #2d6a4f;
+    box-shadow: 0 6px 12px rgba(45, 106, 79, 0.6);
+}
+
     </style>
 </head>
 <body>
+    <a href="{{ route('login') }}" class="login-button">Login</a>
+
     <aside>
         <nav>
             <div class="container">
